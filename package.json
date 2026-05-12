@@ -12,7 +12,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "export": "next build && next export",
+    "export": "next build",
+    "deploy": "npm run export && gh-pages -d out -b gh-pages",
     "start": "next start",
     "lint": "eslint"
   },
@@ -43,6 +44,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.6",
+    "gh-pages": "^6.3.0",
     "typescript": "^5"
   }
 }

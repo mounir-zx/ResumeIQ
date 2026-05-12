@@ -1,5 +1,5 @@
 export async function parsePDF(file: File): Promise<string> {
-  const pdfjsLib = await import('pdfjs-dist/legacy/build/pdf')
+  const pdfjsLib = await import('pdfjs-dist')
 
   // Load the local worker from the public directory instead of CDN
   pdfjsLib.GlobalWorkerOptions.workerSrc = '/pdf.worker.min.mjs'

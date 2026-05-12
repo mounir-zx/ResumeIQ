@@ -170,114 +170,6 @@ npm run lint
 - **Skill Matching**: Instantly see which required skills are in your resume and which are missing.
 - **Actionable Insights**: Get specific, personalized recommendations to improve your resume.
 
-## 🚀 Deploy to GitHub Pages
-
-ResumeIQ can be deployed as a static site on GitHub Pages with minimal configuration. Follow these steps:
-
-### Step 1: Update Next.js Configuration
-
-Modify [next.config.ts](next.config.ts) to enable static export:
-
-```typescript
-import type { NextConfig } from 'next'
-
-const nextConfig: NextConfig = {
-  output: 'export',
-  basePath: '/ResumeIQ', // Replace 'ResumeIQ' with your repo name
-  assetPrefix: '/ResumeIQ/',
-  images: {
-    unoptimized: true,
-  },
-}
-
-export default nextConfig
-```
-
-### Step 2: Update package.json Scripts
-
-Update your [package.json](package.json) build script for GitHub Pages:
-
-```json
-{
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "export": "next export",
-    "start": "next start"
-  }
-}
-```
-
-### Step 3: Create GitHub Actions Workflow
-
-Create `.github/workflows/deploy.yml`:
-
-```yaml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [main]
-  pull_request:
-    branches: [main]
-
-jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-
-    permissions:
-      contents: read
-      pages: write
-      id-token: write
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '18'
-          cache: 'npm'
-
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build Next.js
-        run: npm run build
-
-      - name: Upload artifact to Pages
-        uses: actions/upload-pages-artifact@v2
-        with:
-          path: './out'
-
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v2
-```
-
-### Step 4: Configure GitHub Pages in Repository Settings
-
-1. Go to your repository on GitHub
-2. Navigate to **Settings** → **Pages**
-3. Under **Build and deployment**:
-   - **Source**: Select "GitHub Actions"
-   - **Branch**: Keep default settings
-4. Save changes
-
-### Step 5: Deploy
-
-Push your code to the main branch:
-
-```bash
-git add .
-git commit -m "Setup GitHub Pages deployment"
-git push origin main
-```
-
-Your site will be deployed to: `https://your-username.github.io/ResumeIQ`
-
-> **Note**: If you want to deploy to a custom domain, update the `basePath` in `next.config.ts` and configure your custom domain in GitHub Pages settings.
 
 ## 🚀 Future Enhancements
 
@@ -305,7 +197,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ## 👤 Author
 
-Created by [Your Name](https://github.com/your-username)
+Created by [Abes Mounir](https://github.com/your-username)
 
 ## 🙏 Acknowledgments
 
@@ -315,12 +207,6 @@ Created by [Your Name](https://github.com/your-username)
 - PDF processing with [pdfjs](https://mozilla.github.io/pdf.js/)
 - Charts powered by [Recharts](https://recharts.org/)
 
-## 📧 Support
-
-Have questions or suggestions? Feel free to:
-- Open an [issue](https://github.com/your-username/ResumeIQ/issues)
-- Start a [discussion](https://github.com/your-username/ResumeIQ/discussions)
-- Contact me on [LinkedIn](https://linkedin.com)
 
 ---
 
